@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.waichee.triviaquiz02.R
 import com.waichee.triviaquiz02.databinding.FragmentTitleBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class TitleFragment: Fragment() {
@@ -31,6 +32,8 @@ class TitleFragment: Fragment() {
 
         setupSpinner()
         setupObserver()
+
+        Timber.i("init")
 
         return binding.root
     }

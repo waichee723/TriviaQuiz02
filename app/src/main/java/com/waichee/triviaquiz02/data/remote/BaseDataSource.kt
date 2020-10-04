@@ -8,6 +8,7 @@ abstract class BaseDataSource {
 
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
         try {
+            Timber.i("Trying")
             val response = call()
             if (response.isSuccessful) {
                 Timber.i("Response is successful")

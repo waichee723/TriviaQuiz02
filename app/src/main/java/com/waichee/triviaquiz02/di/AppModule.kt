@@ -19,7 +19,7 @@ object AppModule {
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("https://opentdb.com/api.php?")
+        .baseUrl("https://opentdb.com/")
         .addConverterFactory(MoshiConverterFactory.create())
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
