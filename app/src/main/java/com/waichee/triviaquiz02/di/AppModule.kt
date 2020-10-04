@@ -1,7 +1,9 @@
 package com.waichee.triviaquiz02.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.waichee.triviaquiz02.data.QuizService
+import com.waichee.triviaquiz02.data.remote.QuizRemoteDataSource
+import com.waichee.triviaquiz02.data.remote.QuizService
+import com.waichee.triviaquiz02.data.repository.QuizRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +26,9 @@ object AppModule {
 
     @Provides
     fun provideQuizService(retrofit: Retrofit): QuizService = retrofit.create(QuizService::class.java)
+
+
+    @Provides
+    @Singleton
+    fun provideRepository(remoteDataSource: QuizRemoteDataSource) = QuizRepository(remoteDataSource)
 }
