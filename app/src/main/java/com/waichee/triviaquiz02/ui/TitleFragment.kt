@@ -33,8 +33,6 @@ class TitleFragment: Fragment() {
         setupSpinner()
         setupObserver()
 
-        Timber.i("init")
-
         return binding.root
     }
 

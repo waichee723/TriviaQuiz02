@@ -20,8 +20,7 @@ import timber.log.Timber
 class GameFragment: Fragment() {
     private lateinit var binding: FragmentGameBinding
     private val viewModel: GameViewModel by viewModels()
-
-
+    private var answersList: MutableList<String> = mutableListOf("A", "B", "C", "D")
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentGameBinding.inflate(inflater)
@@ -49,6 +48,13 @@ class GameFragment: Fragment() {
 
         viewModel.currentQuestion.observe(viewLifecycleOwner, Observer {
             binding.questionText.text = it.question
+        })
+
+        viewModel.currentAnswers.observe(viewLifecycleOwner, Observer {
+            binding.radio0.text = it[0]
+            binding.radio1.text = it[1]
+            binding.radio2.text = it[2]
+            binding.radio3.text = it[3]
         })
 
         viewModel.navigateToEndFragment.observe(viewLifecycleOwner, Observer {
