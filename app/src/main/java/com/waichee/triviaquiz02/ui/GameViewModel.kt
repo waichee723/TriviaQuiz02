@@ -20,6 +20,10 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
     val currentQuestion: LiveData<Question>
         get() = _currentQuestion
 
+    private val _navigateToEndFragment = MutableLiveData<Boolean>()
+    val navigateToEndFragment: LiveData<Boolean>
+        get() = _navigateToEndFragment
+
     fun getQuestion(id: Int) {
         _currentQuestion.value = apiResponse.value?.data?.results?.get(id)
     }
@@ -29,8 +33,12 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
             questionId += 1
             getQuestion(questionId)
         } else {
-            Timber.i("Game Finish")
+            _navigateToEndFragment.value = true
         }
+    }
+
+    fun navigationComplete() {
+        _navigateToEndFragment.value = false
     }
 
 }

@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.waichee.triviaquiz02.R
 import com.waichee.triviaquiz02.databinding.FragmentGameBinding
 import com.waichee.triviaquiz02.utils.Resource.Status.LOADING
 import com.waichee.triviaquiz02.utils.Resource.Status.SUCCESS
@@ -47,6 +49,15 @@ class GameFragment: Fragment() {
 
         viewModel.currentQuestion.observe(viewLifecycleOwner, Observer {
             binding.questionText.text = it.question
+        })
+
+        viewModel.navigateToEndFragment.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController().navigate(
+                    R.id.action_gameFragment_to_endFragment
+                )
+                viewModel.navigationComplete()
+            }
         })
     }
 

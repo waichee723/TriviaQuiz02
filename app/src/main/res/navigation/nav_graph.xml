@@ -18,5 +18,14 @@
         android:id="@+id/gameFragment"
         android:name="com.waichee.triviaquiz02.ui.GameFragment"
         android:label="GameFragment"
-        tools:layout="@layout/fragment_game"/>
+        tools:layout="@layout/fragment_game">
+        <action
+            android:id="@+id/action_gameFragment_to_endFragment"
+            app:destination="@id/endFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endFragment"
+        android:name="com.waichee.triviaquiz02.ui.EndFragment"
+        android:label="EndFragment"
+        tools:layout="@layout/fragment_end"/>
 </navigation>
