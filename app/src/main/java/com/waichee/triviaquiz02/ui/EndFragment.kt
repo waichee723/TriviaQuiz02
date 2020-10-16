@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.waichee.triviaquiz02.R
 import com.waichee.triviaquiz02.databinding.FragmentEndBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,6 +22,19 @@ class EndFragment: Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
+        setupObservers()
+
         return binding.root
+    }
+
+    private fun setupObservers() {
+        viewModel.navigateToTitleFragment.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController().navigate(
+                    R.id.action_endFragment_to_titleFragment
+                )
+                viewModel.navigateComplete()
+            }
+        })
     }
 }

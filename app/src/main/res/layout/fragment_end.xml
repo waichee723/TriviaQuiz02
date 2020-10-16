@@ -21,6 +21,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
+        <Button
+            android:id="@+id/return_to_title_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RETURN TO TITLE"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{()->viewModel.returnToTitleButtonOnClick()}"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
