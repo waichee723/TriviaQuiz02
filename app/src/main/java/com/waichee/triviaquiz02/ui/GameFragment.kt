@@ -14,13 +14,16 @@ import com.waichee.triviaquiz02.databinding.FragmentGameBinding
 import com.waichee.triviaquiz02.utils.Resource.Status.LOADING
 import com.waichee.triviaquiz02.utils.Resource.Status.SUCCESS
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_game.next_button
 import timber.log.Timber
 
 @AndroidEntryPoint
 class GameFragment: Fragment() {
     private lateinit var binding: FragmentGameBinding
     private val viewModel: GameViewModel by viewModels()
-    private var answersList: MutableList<String> = mutableListOf("A", "B", "C", "D")
+    private var selectedAnswerId = 0
+    private var radioButtonId = 0
+    private lateinit var radioButton: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentGameBinding.inflate(inflater)
@@ -30,6 +33,17 @@ class GameFragment: Fragment() {
         Timber.i("init")
 
         setupObserver()
+
+        binding.nextButton.setOnClickListener {
+
+            // TODO: Handle none radio button check case
+
+            radioButtonId = binding.radioGroup.checkedRadioButtonId
+            radioButton = binding.radioGroup.findViewById(radioButtonId)
+            selectedAnswerId = binding.radioGroup.indexOfChild(radioButton)
+            Timber.i(selectedAnswerId.toString())
+            viewModel.nextButtonOnClick(selectedAnswerId)
+        }
 
         return binding.root
     }

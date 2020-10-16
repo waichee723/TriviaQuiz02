@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import com.waichee.triviaquiz02.data.entities.Question
 import com.waichee.triviaquiz02.data.repository.QuizRepository
+import kotlinx.coroutines.selects.select
 import timber.log.Timber
 
 class GameViewModel @ViewModelInject constructor(private val repository: QuizRepository) : ViewModel() {
@@ -52,13 +53,19 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
         correctAnswerId = (0..3).random()
     }
 
-    private fun checkAnswer() {
+    private fun checkAnswer(input: Int) {
+        Timber.i("$input, $correctAnswerId")
 
+        if (input == correctAnswerId) {
+            Timber.i("Answer correct")
+        } else {
+            Timber.i("Answer wrong")
+        }
     }
 
+    fun nextButtonOnClick(selectedAnswerID: Int) {
 
-    fun nextButtonOnClick() {
-        checkAnswer()
+        checkAnswer(selectedAnswerID)
 
         if (questionId < numberOfQuestions - 1) {
             questionId += 1
