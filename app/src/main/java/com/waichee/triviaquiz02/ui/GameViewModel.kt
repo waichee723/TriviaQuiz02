@@ -5,20 +5,21 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
+import com.waichee.triviaquiz02.data.entities.ApiResponse
 import com.waichee.triviaquiz02.data.entities.Question
 import com.waichee.triviaquiz02.data.repository.QuizRepository
+import com.waichee.triviaquiz02.utils.Resource
 import kotlinx.coroutines.selects.select
 import timber.log.Timber
 
 class GameViewModel @ViewModelInject constructor(private val repository: QuizRepository) : ViewModel() {
 
     // Variables
-    private val numberOfQuestions = 10
+    private var numberOfQuestions: Int = 0
     private var questionId = 0
     private var correctAnswerId = 0
     private lateinit var tempAnswerList: MutableList<String>
-
-    val apiResponse = repository.getQuestions(numberOfQuestions)
+    lateinit var apiResponse: LiveData<Resource<ApiResponse>>
 
     // LiveData
     private val _currentQuestion = MutableLiveData<Question>()
@@ -34,6 +35,12 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
         get() = _navigateToEndFragment
 
     // Functions
+    fun start(amount: Int) {
+        numberOfQuestions = amount
+        apiResponse = repository.getQuestions(numberOfQuestions)
+    }
+
+
     fun getQuestion(id: Int) {
         _currentQuestion.value = apiResponse.value?.data?.results?.get(id)
         setCorrectAnswerId()

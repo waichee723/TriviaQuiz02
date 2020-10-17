@@ -9,6 +9,7 @@ import android.widget.AdapterView.OnItemClickListener
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -48,11 +49,12 @@ class TitleFragment: Fragment() {
     private fun setupObserver() {
         viewModel.navigateToGame.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                val spinnerItem = binding.spinnerNumberOfQuestions.selectedItem.toString()
-                Toast.makeText(requireContext(), spinnerItem, Toast.LENGTH_SHORT).show()
+                val spinnerItem = binding.spinnerNumberOfQuestions.selectedItem.toString().toInt()
+//                Toast.makeText(requireContext(), spinnerItem, Toast.LENGTH_SHORT).show()
 
                 this.findNavController().navigate(
-                    R.id.action_titleFragment_to_gameFragment
+                    R.id.action_titleFragment_to_gameFragment,
+                    bundleOf("amount" to spinnerItem)
                 )
 
                 viewModel.navigationComplete()

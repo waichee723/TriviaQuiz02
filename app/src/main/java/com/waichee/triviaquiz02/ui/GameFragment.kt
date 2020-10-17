@@ -30,7 +30,6 @@ class GameFragment: Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        setupObserver()
 
         binding.nextButton.setOnClickListener {
             radioButtonId = binding.radioGroup.checkedRadioButtonId
@@ -44,9 +43,16 @@ class GameFragment: Fragment() {
                 Toast.makeText(context, "Please select an answer", Toast.LENGTH_SHORT).show()
             }
         }
-
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.getInt("amount")?.let { viewModel.start(it) }
+
+        setupObserver()
+    }
+
 
     private fun setupObserver() {
         viewModel.apiResponse.observe(viewLifecycleOwner, Observer {
