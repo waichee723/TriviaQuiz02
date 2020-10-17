@@ -21,6 +21,8 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
     private lateinit var tempAnswerList: MutableList<String>
     lateinit var apiResponse: LiveData<Resource<ApiResponse>>
 
+    var score: Int = 0
+
     // LiveData
     private val _currentQuestion = MutableLiveData<Question>()
     val currentQuestion: LiveData<Question>
@@ -61,10 +63,10 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
     }
 
     private fun checkAnswer(input: Int) {
-        Timber.i("$input, $correctAnswerId")
 
         if (input == correctAnswerId) {
             Timber.i("Answer correct")
+            score += 1
         } else {
             Timber.i("Answer wrong")
         }

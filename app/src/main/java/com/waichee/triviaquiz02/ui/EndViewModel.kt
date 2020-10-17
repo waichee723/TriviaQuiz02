@@ -11,6 +11,13 @@ class EndViewModel @ViewModelInject constructor() :ViewModel() {
     val navigateToTitleFragment: LiveData<Boolean>
         get() = _navigateToTitleFragment
 
+    var _score = ""
+
+
+    fun start(score: Int) {
+        _score = score.toString()
+    }
+
     fun returnToTitleButtonOnClick() {
         _navigateToTitleFragment.value = true
     }

@@ -22,9 +22,15 @@ class EndFragment: Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        setupObservers()
+
 
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.getInt("score")?.let { viewModel.start(it) }
+        setupObservers()
     }
 
     private fun setupObservers() {

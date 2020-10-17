@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -80,7 +81,8 @@ class GameFragment: Fragment() {
         viewModel.navigateToEndFragment.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 this.findNavController().navigate(
-                    R.id.action_gameFragment_to_endFragment
+                    R.id.action_gameFragment_to_endFragment,
+                    bundleOf("score" to viewModel.score)
                 )
                 viewModel.navigationComplete()
             }
