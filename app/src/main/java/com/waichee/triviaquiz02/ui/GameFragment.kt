@@ -30,19 +30,19 @@ class GameFragment: Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
-        Timber.i("init")
-
         setupObserver()
 
         binding.nextButton.setOnClickListener {
-
-            // TODO: Handle none radio button check case
-
             radioButtonId = binding.radioGroup.checkedRadioButtonId
-            radioButton = binding.radioGroup.findViewById(radioButtonId)
-            selectedAnswerId = binding.radioGroup.indexOfChild(radioButton)
-            Timber.i(selectedAnswerId.toString())
-            viewModel.nextButtonOnClick(selectedAnswerId)
+
+            if (radioButtonId != -1) {
+                radioButton = binding.radioGroup.findViewById(radioButtonId)
+                selectedAnswerId = binding.radioGroup.indexOfChild(radioButton)
+                viewModel.nextButtonOnClick(selectedAnswerId)
+                binding.radioGroup.clearCheck()
+            } else {
+                Toast.makeText(context, "Please select an answer", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return binding.root
