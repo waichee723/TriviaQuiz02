@@ -40,7 +40,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{()->viewModel.returnToTitleButtonOnClick()}"/>
+            android:onClick="@{()->viewModel.returnToTitleButtonOnClick()}"
+            style="@style/ActionButton"
+            android:layout_margin="10dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

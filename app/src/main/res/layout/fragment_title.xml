@@ -34,7 +34,9 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="START"
-            android:onClick="@{()->viewModel.startButtonClicked()}"/>
+            android:onClick="@{()->viewModel.startButtonClicked()}"
+            style="@style/ActionButton"
+            android:layout_margin="10dp"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

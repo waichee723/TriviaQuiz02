@@ -57,13 +57,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="question_text placeholder"
-            android:textSize="30dp"
+            android:textSize="20dp"
             app:layout_constraintTop_toBottomOf="@id/question_number"
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible"
             />
 
         <RadioGroup
@@ -72,31 +74,38 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/question_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <RadioButton
                 android:id="@+id/radio_0"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="A" />
+                android:text="A"
+                style="@style/AnswersButton"
+                />
 
             <RadioButton
                 android:id="@+id/radio_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="B"/>
+                android:text="B"
+                style="@style/AnswersButton"/>
 
             <RadioButton
                 android:id="@+id/radio_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="C"/>
+                android:text="C"
+                style="@style/AnswersButton"/>
 
             <RadioButton
                 android:id="@+id/radio_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="D"/>
+                android:text="D"
+                style="@style/AnswersButton"/>
 
         </RadioGroup>
 
@@ -107,7 +116,9 @@
             android:text="SUBMIT"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
+            style="@style/ActionButton"/>
 
 
 
