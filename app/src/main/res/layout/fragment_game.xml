@@ -24,13 +24,23 @@
 
         <TextView
             android:id="@+id/question_number"
-            android:text="1/10"
+            android:text="@{viewModel.questionNumber}"
+            tools:text="1"
             android:textSize="30dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/question_number_label"
             android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/total_question_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/question_number"
+            app:layout_constraintStart_toEndOf="@id/question_number"
+            tools:text="/10"
+            />
 
         <ProgressBar
             android:id="@+id/loading_animation"

@@ -48,7 +48,12 @@ class GameFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arguments?.getInt("amount")?.let { viewModel.start(it) }
+        arguments?.getInt("amount")?.let {
+            viewModel.start(it)
+            binding.totalQuestionNumber.text = "/$it"
+        }
+
+
 
         setupObserver()
     }

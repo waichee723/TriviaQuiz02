@@ -36,9 +36,14 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
     val navigateToEndFragment: LiveData<Boolean>
         get() = _navigateToEndFragment
 
+    private val _questionNumber = MutableLiveData<String>()
+    val questionNumber: LiveData<String>
+        get() = _questionNumber
+
     // Functions
     fun start(amount: Int) {
         numberOfQuestions = amount
+        _questionNumber.value = "1"
         apiResponse = repository.getQuestions(numberOfQuestions)
     }
 
@@ -78,6 +83,7 @@ class GameViewModel @ViewModelInject constructor(private val repository: QuizRep
 
         if (questionId < numberOfQuestions - 1) {
             questionId += 1
+            _questionNumber.value = (questionId + 1).toString()
             getQuestion(questionId)
         } else {
             _navigateToEndFragment.value = true
