@@ -34,7 +34,6 @@ class GameFragment: Fragment() {
 
         binding.nextButton.setOnClickListener {
             radioButtonId = binding.radioGroup.checkedRadioButtonId
-
             if (radioButtonId != -1) {
                 radioButton = binding.radioGroup.findViewById(radioButtonId)
                 selectedAnswerId = binding.radioGroup.indexOfChild(radioButton)
@@ -60,10 +59,19 @@ class GameFragment: Fragment() {
             when (it.status) {
                 SUCCESS -> {
                     viewModel.getQuestion(0)
-                    binding.statusText.text = "SUCCESS"
+                    binding.questionText.visibility = View.VISIBLE
+                    binding.radioGroup.visibility = View.VISIBLE
+                    binding.loadingAnimation.visibility = View.GONE
                 }
-                LOADING -> binding.statusText.text = "LOADING QUESTIONS"
-                else -> binding.statusText.text = "ERROR"
+                LOADING -> {
+                    binding.questionText.visibility = View.GONE
+                    binding.radioGroup.visibility = View.GONE
+                    binding.loadingAnimation.visibility = View.VISIBLE
+                }
+                else -> {
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show()
+                    binding.loadingAnimation.visibility = View.GONE
+                }
             }
         })
 
